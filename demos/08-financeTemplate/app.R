@@ -1,8 +1,9 @@
 library(shiny)
 
-ui <- fluidPage(
-  sliderInput("num", "Choose a number", 1, 100, 50),
-  plotOutput("hist")
+ui <- htmlTemplate(
+  "index.html",
+  "slider" = sliderInput("num", "Choose a number", 1, 100, 50),
+  "plot" = plotOutput("hist")
 )
 
 server <- function(input, output) {
