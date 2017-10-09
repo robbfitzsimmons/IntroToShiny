@@ -1,17 +1,13 @@
 library(shiny)
 
 ui <- fluidPage(
-  fluidRow(
-  column(3,
-    sliderInput("num", "Choose a number", 1, 100, 50)
-  ),
-  column(9,
-    plotOutput("hist")
-  )
-),
-fluidRow(
-  column(5, offset = 5,
-    verbatimTextOutput("sum")
+  sidebarLayout(
+    sidebarPanel(
+      sliderInput("num", "Choose a number", 1, 100, 50)
+    ),
+    mainPanel(
+      plotOutput("hist"),
+      verbatimTextOutput("sum")
     )
   )
 )
