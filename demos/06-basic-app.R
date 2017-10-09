@@ -1,14 +1,23 @@
 library(shiny)
 
 ui <- fluidPage(
-  sliderInput("num", "Slide Me", 1, 100, 50),
-  actionButton("go", "Update"),
-  plotOutput("hist"),
-  verbatimTextOutput("sum")
+  fluidRow(
+  column(3,
+    sliderInput("num", "Choose a number", 1, 100, 50)
+  ),
+  column(9,
+    plotOutput("hist")
+  )
+),
+fluidRow(
+  column(5, offset = 5,
+    verbatimTextOutput("sum")
+    )
+  )
 )
 
 server <- function(input, output) {
-  data <- eventReactive(input$go, {rnorm(input$num)})
+  data <- reactive({rnorm(input$num)})
   output$hist <- renderPlot({
     hist(data())   
   })
